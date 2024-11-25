@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_mshahat_harness_jhttp_1732578918713-push-trigger-input-set
+  identifier: Build_mshahat_harness_jhttp_1732578918713pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: githubjavajhttp
+  pipeline:
+    identifier: Build_mshahat_harness_jhttp_1732578918713
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
