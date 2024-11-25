@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_mshahat_harness_jhttp_1732575177864-pr-trigger-input-set
+  identifier: Build_mshahat_harness_jhttp_1732575177864prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: githubjavajhttp
+  pipeline:
+    identifier: Build_mshahat_harness_jhttp_1732575177864
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
