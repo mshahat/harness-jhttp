@@ -33,7 +33,7 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
-                      echo "Welcome to Harness CI"
+                      echo "Welcome to Harness CI and MAven build"
                       mvn -B package --file pom.xml
               - step:
                   identifier: dockerbuild
