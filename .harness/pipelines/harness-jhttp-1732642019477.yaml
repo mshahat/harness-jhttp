@@ -27,6 +27,15 @@ pipeline:
                   timeout: ""
                   type: Run
               - step:
+                  type: Run
+                  name: run-mvn
+                  identifier: runmvn
+                  spec:
+                    shell: Sh
+                    command: |-
+                      echo "Welcome to Harness CI"
+                      mvn -B package --file pom.xml
+              - step:
                   identifier: dockerbuild
                   name: docker_build
                   spec:
@@ -38,9 +47,9 @@ pipeline:
                   timeout: ""
                   type: BuildAndPushDockerRegistry
           platform:
-            arch: Amd64
             os: Linux
+            arch: Amd64
           runtime:
-            spec: {}
             type: Cloud
+            spec: {}
         type: CI
