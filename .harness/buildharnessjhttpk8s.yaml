@@ -1,0 +1,71 @@
+pipeline:
+  orgIdentifier: default
+  projectIdentifier: githubharnessjhttp
+  properties:
+    ci:
+      codebase:
+        build: <+input>
+        connectorRef: account.Github_OAuth_1732574891633
+        repoName: mshahat/harness-jhttp
+  stages:
+    - stage:
+        identifier: build
+        name: build
+        spec:
+          caching:
+            enabled: true
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  identifier: echo
+                  name: echo
+                  spec:
+                    command: echo hello world
+                  timeout: ""
+                  type: Run
+              - step:
+                  type: RunTests
+                  name: run-test
+                  identifier: RunTests_1
+                  spec:
+                    language: Java
+                    buildTool: Maven
+                    args: clean test
+                    runOnlySelectedTests: true
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - '**/*.xml'
+                    enableTestSplitting: false
+              - step:
+                  type: Run
+                  name: run-mvn
+                  identifier: runmvn
+                  spec:
+                    shell: Sh
+                    command: |-
+                      echo "Welcome to Harness CI and MAven build"
+                      mvn -B package --file pom.xml
+              - step:
+                  identifier: dockerbuild
+                  name: docker_build
+                  spec:
+                    connectorRef: <+input>
+                    repo: mshahat/harness-jhttp
+                    tags:
+                      - latest
+                    caching: true
+                  timeout: ""
+                  type: BuildAndPushDockerRegistry
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+        type: CI
+  identifier: buildharnessjhttpk8s
+  tags: {}
+  name: build-harness-jhttp-k8s
