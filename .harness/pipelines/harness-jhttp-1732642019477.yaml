@@ -27,6 +27,21 @@ pipeline:
                   timeout: ""
                   type: Run
               - step:
+                  type: RunTests
+                  name: RunTests_1
+                  identifier: RunTests_1
+                  spec:
+                    language: Java
+                    buildTool: Maven
+                    args: clean test
+                    runOnlySelectedTests: true
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - "**/*.xml"
+                    enableTestSplitting: false
+              - step:
                   type: Run
                   name: run-mvn
                   identifier: runmvn
