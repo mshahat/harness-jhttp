@@ -28,7 +28,7 @@ pipeline:
                   type: Run
               - step:
                   type: RunTests
-                  name: RunTests_1
+                  name: run-test
                   identifier: RunTests_1
                   spec:
                     language: Java
